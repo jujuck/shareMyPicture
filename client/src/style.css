@@ -16,7 +16,8 @@ body {
   justify-content: center;
   margin: 0.5rem 0;
 
-  a {
+  a,
+  button {
     background-color: var(--bgColor);
     border-radius: var(--borderraduis);
     color: white;
@@ -25,7 +26,8 @@ body {
     text-align: center;
   }
 
-  a:hover {
+  a:hover,
+  button:hover {
     background-color: var(--bgLigth);
   }
 }
@@ -45,6 +47,31 @@ body {
     list-style: none;
     padding: 0.1rem;
     transform: rotate(-45deg);
+  }
+}
+
+.wedding_form {
+  display: flex;
+  flex-direction: column;
+  border: 1px solid var(--bgColor);
+  border-radius: var(--borderraduis);
+  padding: 0.5rem;
+
+  label {
+    font-weight: 800;
+    padding: 0.4rem 0.2rem 0.2rem 0.2rem;
+  }
+
+  input,
+  textarea {
+    width: 100%;
+    border-radius: var(--borderraduis);
+    border: none;
+    padding: 0.2rem;
+  }
+
+  section {
+    display: flex;
   }
 }
 
