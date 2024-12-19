@@ -47,3 +47,15 @@ body {
     transform: rotate(-45deg);
   }
 }
+
+@media screen and (min-width: 768px) {
+  .wedding_img {
+    width: 50%;
+  }
+
+  .wedding_btn {
+    a {
+      width: 50%;
+    }
+  }
+}
