@@ -5,7 +5,7 @@ import LoginView from "../pages/LoginView.vue";
 import SharingView from "../pages/SharingView.vue";
 
 const router = createRouter({
-  history: createWebHistory("http://localhost:5173"),
+  history: createWebHistory(""),
   routes: [
     {
       path: "/",
