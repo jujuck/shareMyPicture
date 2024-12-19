@@ -1,0 +1,49 @@
+:root {
+  --borderraduis: 0.2rem;
+  --bgColor: black;
+  --bgLigth: rgba(0, 0, 0, 0.8);
+}
+
+body {
+  background-color: #c8ad7f;
+  padding: 0;
+  margin: 0;
+  box-sizing: border-box;
+}
+
+.wedding_btn {
+  display: flex;
+  justify-content: center;
+  margin: 0.5rem 0;
+
+  a {
+    background-color: var(--bgColor);
+    border-radius: var(--borderraduis);
+    color: white;
+    padding: 0.5rem;
+    width: 90%;
+    text-align: center;
+  }
+
+  a:hover {
+    background-color: var(--bgLigth);
+  }
+}
+
+.wedding_img {
+  width: 90%;
+  border-radius: var(--borderraduis);
+  box-shadow: 5px 5px 15px 5px var(--bgColor);
+}
+
+.wedding_signature {
+  display: flex;
+  justify-content: center;
+  margin-top: 4rem;
+
+  h6 {
+    list-style: none;
+    padding: 0.1rem;
+    transform: rotate(-45deg);
+  }
+}
