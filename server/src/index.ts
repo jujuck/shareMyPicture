@@ -12,9 +12,9 @@ app.use(
   })
 );
 
-app.use("/", router);
+app.use("/api", router);
 
-app.listen(3001, async () => {
+app.listen(4000, async () => {
   await dataSource.initialize();
-  console.log(`Serveur is listenning on http://localhost:3001`);
+  console.log(`Serveur is listenning on http://localhost:4000`);
 });
