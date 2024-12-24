@@ -1,5 +1,5 @@
 <template lang="">
-  <form @submit="($event) => onSubmit($event)">
+  <form @submit="onSubmit">
     <div class="wedding_heading flex text-center mt-5">
       <h1>Chargez votre image ici !!!</h1>
       <h3>Laissez nous un petit mot également</h3>
@@ -34,6 +34,7 @@
 </template>
 <script setup lang="ts">
 import { ref } from 'vue';
+import client from '../services/client'
 
 const name = ref < string > ("");
 const tags = ref < string > ("");
@@ -47,10 +48,27 @@ const onFileChanged = ($event: Event) => {
   }
 }
 
-const onSubmit = ($event: Event) => {
+const onSubmit = async ($event: Event) => {
   $event.preventDefault();
 
-  console.log(name.value, description.value, file.value, tags.value)
+  try {
+
+    if (file.value) {
+      const formData = new FormData();
+
+      formData.append("images", file.value);
+      formData.append("name", name.value);
+      formData.append("tags", tags.value);
+      formData.append("descriptiony", description.value);
+
+      await client.post(`images`, formData);
+    } else {
+      throw new Error("Invalid File")
+    }
+
+  } catch (error) {
+    console.error("There was an error uploading the image", error);
+  }
 }
 
 </script>
