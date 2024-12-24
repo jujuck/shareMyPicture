@@ -1,4 +1,4 @@
-<template lang="">
+<template>
   <div>
     <h1>Sharing</h1>
   </div>
@@ -8,6 +8,4 @@ export default {
 
 }
 </script>
-<style lang="">
-
-</style>
+<style></style>

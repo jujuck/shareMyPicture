@@ -1,8 +1,9 @@
-<template lang="">
+<template>
   <section class="flex text-center mt-5">
     <h1>Encore merci d'être avec nous aujourd'hui</h1>
     <h2>Pleins de gros bisous</h2>
-    <img src="https://tse1.mm.bing.net/th?id=OIP.VAdTcCZD7T1qmH1grqiSHAHaFV&pid=Api" alt="mariage champetre avec un canapé en paille" class="wedding_img" />
+    <img src="https://tse1.mm.bing.net/th?id=OIP.VAdTcCZD7T1qmH1grqiSHAHaFV&pid=Api"
+      alt="mariage champetre avec un canapé en paille" class="wedding_img" />
   </section>
   <section class="wedding_btn mt-5">
     <RouterLink to="ton-image">

@@ -1,4 +1,4 @@
-<template lang="">
+<template>
   <form @submit="onSubmit">
     <div class="wedding_heading flex text-center mt-5">
       <h1>Chargez votre image ici !!!</h1>
@@ -8,19 +8,19 @@
       <label for="picture">
         Charge ta photo
       </label>
-      <input type="file" id="picture" required @change="onFileChanged($event)"/>
+      <input id="picture" type="file" required @change="onFileChanged($event)" />
       <label for="name">
         Ton nom et prénom
       </label>
-      <input type="text" id="name" required v-model="name"/>
+      <input id="name" v-model="name" type="text" required />
       <label for="tags">
         Tag des personnes (si tu le veux)
       </label>
-      <input type="text" id="tags" v-model="tags"/>
+      <input id="tags" v-model="tags" type="text" />
       <label for="description">
         Une petite description
       </label>
-      <textarea id="description" required v-model="description"></textarea>
+      <textarea id="description" v-model="description" required></textarea>
     </div>
     <div class="wedding_btn">
       <button type="submit">Partager</button>
@@ -28,7 +28,8 @@
   </form>
   <section>
     <small>
-        L'ensemble des images partagées est stocké sur notre ordinateur, dans cette même salle. Aucune image ne sera partagée en dehors de l'assemblée ici présente
+      L'ensemble des images partagées est stocké sur notre ordinateur, dans cette même salle. Aucune image ne sera
+      partagée en dehors de l'assemblée ici présente
     </small>
   </section>
 </template>
@@ -36,10 +37,10 @@
 import { ref } from 'vue';
 import client from '../services/client'
 
-const name = ref < string > ("");
-const tags = ref < string > ("");
-const description = ref < string > ("");
-const file = ref < File | null > ();
+const name = ref<string>("");
+const tags = ref<string>("");
+const description = ref<string>("");
+const file = ref<File | null>();
 
 const onFileChanged = ($event: Event) => {
   const target = $event.target as HTMLInputElement;
