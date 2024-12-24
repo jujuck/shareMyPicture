@@ -30,6 +30,9 @@ export class Images extends BaseEntity {
   @IsString()
   description: string;
 
+  @Column({ default: false })
+  seen: Boolean;
+
   @CreateDateColumn()
   created_at: Date;
 }
