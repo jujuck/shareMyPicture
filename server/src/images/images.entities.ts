@@ -4,13 +4,13 @@ import {
   Column,
   CreateDateColumn,
   Entity,
-  PrimaryColumn,
+  PrimaryGeneratedColumn,
 } from "typeorm";
 import { IsString } from "class-validator";
 
 @Entity()
 export class Images extends BaseEntity {
-  @PrimaryColumn()
+  @PrimaryGeneratedColumn()
   @IsString()
   id: string;
 

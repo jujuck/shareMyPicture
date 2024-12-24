@@ -1,5 +1,6 @@
 import express, { Response, Request } from "express";
 import upload from "../services/upload";
+import { Images } from "./images.entities";
 
 const imagesControllers = express.Router();
 
@@ -14,11 +15,24 @@ imagesControllers.get("/", async (_: any, res: Response) => {
 imagesControllers.post(
   "/",
   upload.single("images"),
-  async (_: Request, res: Response) => {
+  async (req: Request, res: Response) => {
     try {
       console.log(req.file);
       console.log(req.body);
-      res.status(201).json("Hello");
+      if (req.file?.filename) {
+        const { name, description, tags } = req.body;
+
+        const image = new Images();
+        image.name = name;
+        image.description = description;
+        image.tags = tags;
+        image.url = req.file?.filename;
+        image.save();
+
+        res.sendStatus(201);
+      } else {
+        res.sendStatus(422);
+      }
     } catch (error) {
       res.sendStatus(500);
     }
