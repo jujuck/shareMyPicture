@@ -59,7 +59,7 @@ const onSubmit = async ($event: Event) => {
       formData.append("images", file.value);
       formData.append("name", name.value);
       formData.append("tags", tags.value);
-      formData.append("descriptiony", description.value);
+      formData.append("description", description.value);
 
       await client.post(`images`, formData);
     } else {
