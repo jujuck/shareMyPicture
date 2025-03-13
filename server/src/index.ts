@@ -7,7 +7,11 @@ const app = express();
 
 app.use(
   cors({
-    origin: ["http://localhost:5173", "http://192.168.1.14:5173"],
+    origin: [
+      "http://localhost:5173",
+      "http://192.168.1.14:5173",
+      "https://helene-et-julien-partage-de-photo.netlify.app",
+    ],
     credentials: true,
   })
 );

@@ -1,0 +1,12 @@
+# Redirige toutes les routes de l'app React vers index.html (React Router)
+[[redirects]]
+  from = "/*"
+  to = "/index.html"
+  status = 200
+
+# Proxy pour les requêtes API vers ton serveur local
+[[redirects]]
+  from = "/api/*"
+  to = "http://192.168.1.141:3000/api/:splat"
+  status = 200
+  force = true
