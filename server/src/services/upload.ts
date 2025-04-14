@@ -1,6 +1,7 @@
 import multer from "multer";
 import { Request } from "express";
 
+let index = 0;
 const storage = multer.diskStorage({
   destination(_: Request, file, cb) {
     if (file.fieldname === "images") {
@@ -11,7 +12,7 @@ const storage = multer.diskStorage({
     const fileArray = file.originalname.split(".");
     const extension = fileArray.pop();
     const id = Date.now();
-    cb(null, `${fileArray.join("-")}-${id}.${extension}`);
+    cb(null, `${index++}-${id}.${extension}`);
   },
 });
 

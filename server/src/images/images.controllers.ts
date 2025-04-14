@@ -17,8 +17,6 @@ imagesControllers.post(
   upload.single("images"),
   async (req: Request, res: Response) => {
     try {
-      console.log(req.file);
-      console.log(req.body);
       if (req.file?.filename) {
         const { name, description, tags } = req.body;
 
