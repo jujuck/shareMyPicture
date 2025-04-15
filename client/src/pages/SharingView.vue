@@ -1,12 +1,10 @@
 <template>
   <div>
     <h1 class="mt-2 text-center">Merci pour ton partage</h1>
-    <section class="mt-5">
-
+    <section class="preview">
       <img :src="url + '/public/images/' + image.url" alt="image.alt"
-        :class="image.orientation === 'landscape' ? 'landscape' : 'portrait'" class="preview" />
-      <div class="mt-5">
-
+        :class="image.orientation === 'landscape' ? 'landscape' : 'portrait'" />
+      <div class="mt-2">
         <h3>Photographe : <span class="h5">{{ image.name }}</span></h3>
         <h4>Tags : <span class="h5">{{ image.tags }}</span></h4>
         <div class="text-center p-3 border">
@@ -15,7 +13,7 @@
         </div>
       </div>
     </section>
-    <section class="wedding_btn mt-5">
+    <section class="wedding_btn mt-4">
       <RouterLink to="/ton-image">
         Re Partager un instant avec vous
       </RouterLink>
@@ -46,9 +44,24 @@ onMounted(async () => {
 </script>
 <style>
 .preview {
-  width: 100%;
-  border: 1px solid black;
-  border-radius: 0.5rem;
-  min-height: 50vh;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+
+  img {
+    border: 1px solid black;
+    border-radius: 0.5rem;
+  }
+
+  .landscape {
+    width: 100%;
+    max-height: 50vh;
+  }
+
+  .portrait {
+    max-height: 50vh;
+    width: fit-content;
+  }
 }
 </style>
