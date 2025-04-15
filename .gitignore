@@ -23,8 +23,11 @@ dist-ssr
 *.sln
 *.sw?
 
-./client/node_modules
-./server/node_modules
-./server/public
+client/node_modules
+server/node_modules
+server/public/*
+server/db.sqlite
+
 .env
-persist
+server/.env
+client/.env

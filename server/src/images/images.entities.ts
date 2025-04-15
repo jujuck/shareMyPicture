@@ -6,16 +6,18 @@ import {
   Entity,
   PrimaryGeneratedColumn,
 } from "typeorm";
-import { IsString } from "class-validator";
+import { IsString, MinLength } from "class-validator";
 
 @Entity()
 export class Images extends BaseEntity {
-  @PrimaryGeneratedColumn()
-  @IsString()
+  @PrimaryGeneratedColumn("uuid")
   id: string;
 
   @Column()
   @IsString()
+  @MinLength(3, {
+    message: "Nom trop court",
+  })
   name: string;
 
   @Column()
@@ -28,6 +30,9 @@ export class Images extends BaseEntity {
 
   @Column()
   @IsString()
+  @MinLength(10, {
+    message: "Merci d'étoffer la description",
+  })
   description: string;
 
   @Column({ default: false })

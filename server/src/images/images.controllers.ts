@@ -12,21 +12,34 @@ imagesControllers.get("/", async (_: any, res: Response) => {
   }
 });
 
+imagesControllers.get("/:id", async (req: Request, res: Response) => {
+  try {
+    const result = await Images.findOneBy({ id: req.params.id });
+
+    if (result) {
+      res.status(200).json(result);
+    } else {
+      res.status(422).json({ error: "Identifiant incorrect" });
+    }
+  } catch (error) {
+    res.sendStatus(500);
+  }
+});
+
 imagesControllers.post(
   "/",
   upload.single("images"),
   async (req: Request, res: Response) => {
     try {
-      if (req.file?.filename) {
-        const { name, description, tags } = req.body;
-
+      const { name, description, tags } = req.body;
+      if (req.file?.filename && name && description && tags) {
         const image = new Images();
         image.name = name;
         image.description = description;
         image.tags = tags;
         image.url = req.file?.filename;
         const result = await image.save();
-        console.log(result);
+
         res.status(201).json(result);
       } else {
         res.sendStatus(422);

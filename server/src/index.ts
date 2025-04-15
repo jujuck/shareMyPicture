@@ -1,5 +1,6 @@
 import express from "express";
 import router from "./router";
+import path from "path";
 import { dataSource } from "./client";
 import "reflect-metadata";
 import cors from "cors";
@@ -14,6 +15,9 @@ app.use(
 );
 
 app.use("/api", router);
+
+const uploadDir = "./public";
+app.use("/public", express.static(path.resolve(uploadDir)));
 
 const PORT = process.env.PORT || 3000;
 app.listen(PORT, async () => {

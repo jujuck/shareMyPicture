@@ -12,7 +12,7 @@
       <label for="name">
         Ton nom et prénom
       </label>
-      <input id="name" v-model="name" type="text" required />
+      <input id="name" v-model="name" type="text" required minlength="4" />
       <label for="tags">
         Tag des personnes (si tu le veux)
       </label>
@@ -20,7 +20,7 @@
       <label for="description">
         Une petite description
       </label>
-      <textarea id="description" v-model="description" required></textarea>
+      <textarea id="description" v-model="description" required minlength="10"></textarea>
     </div>
     <div class="wedding_btn">
       <button type="submit">Partager</button>
@@ -38,17 +38,8 @@ import { ref } from 'vue';
 import client from '../services/client';
 import { toast } from 'vue3-toastify';
 import 'vue3-toastify/dist/index.css';
-import { useRouter } from "vue-router"
-
-type ImageType = {
-  name: string;
-  description: string;
-  tags: string;
-  url: string;
-  id: number;
-  seen: boolean;
-  created_at: Date
-}
+import { useRouter } from "vue-router";
+import type { ImageType } from '../types/images.types';
 
 const name = ref<string>("");
 const tags = ref<string>("");
