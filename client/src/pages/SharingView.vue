@@ -49,6 +49,6 @@ onMounted(async () => {
   width: 100%;
   border: 1px solid black;
   border-radius: 0.5rem;
-  ;
+  min-height: 50vh;
 }
 </style>
