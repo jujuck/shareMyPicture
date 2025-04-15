@@ -8,7 +8,7 @@
       <label for="picture">
         Charge ta photo
       </label>
-      <input id="picture" type="file" required @change="onFileChanged($event)" />
+      <input id="picture" type="file" required @change="onFileChanged($event)" accept="image/*" />
       <label for="name">
         Ton nom et prénom
       </label>

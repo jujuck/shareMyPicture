@@ -6,6 +6,7 @@ export type ImageType = {
   id: string;
   seen: boolean;
   created_at?: Date;
+  orientation?: string;
 };
 
 export const initialImage: ImageType = {

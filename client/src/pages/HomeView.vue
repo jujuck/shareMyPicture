@@ -6,7 +6,7 @@
       alt="mariage champetre avec un canapé en paille" class="wedding_img" />
   </section>
   <section class="wedding_btn mt-5">
-    <RouterLink to="ton-image">
+    <RouterLink to="/ton-image">
       Partager un instant avec vous
     </RouterLink>
   </section>
