@@ -30,6 +30,10 @@ export class Images extends BaseEntity {
 
   @Column()
   @IsString()
+  orientation: string;
+
+  @Column()
+  @IsString()
   @MinLength(10, {
     message: "Merci d'étoffer la description",
   })

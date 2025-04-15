@@ -1,6 +1,7 @@
 import express, { Response, Request } from "express";
 import upload from "../services/upload";
 import { Images } from "./images.entities";
+import resizeImage from "../services/sharp";
 
 const imagesControllers = express.Router();
 
@@ -29,15 +30,17 @@ imagesControllers.get("/:id", async (req: Request, res: Response) => {
 imagesControllers.post(
   "/",
   upload.single("images"),
+  resizeImage,
   async (req: Request, res: Response) => {
     try {
-      const { name, description, tags } = req.body;
+      const { name, description, tags, orientation } = req.body;
       if (req.file?.filename && name && description && tags) {
         const image = new Images();
         image.name = name;
         image.description = description;
         image.tags = tags;
         image.url = req.file?.filename;
+        image.orientation = orientation;
         const result = await image.save();
 
         res.status(201).json(result);
