@@ -23,7 +23,7 @@ const router = createRouter({
       component: LoginView,
     },
     {
-      path: "/mon-partage",
+      path: "/mon-partage/:id",
       name: "sharing",
       component: SharingView,
     },

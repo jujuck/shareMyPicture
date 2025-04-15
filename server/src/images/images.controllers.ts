@@ -25,9 +25,9 @@ imagesControllers.post(
         image.description = description;
         image.tags = tags;
         image.url = req.file?.filename;
-        image.save();
-
-        res.sendStatus(201);
+        const result = await image.save();
+        console.log(result);
+        res.status(201).json(result);
       } else {
         res.sendStatus(422);
       }

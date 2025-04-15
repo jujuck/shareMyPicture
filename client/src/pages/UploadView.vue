@@ -35,12 +35,26 @@
 </template>
 <script setup lang="ts">
 import { ref } from 'vue';
-import client from '../services/client'
+import client from '../services/client';
+import { toast } from 'vue3-toastify';
+import 'vue3-toastify/dist/index.css';
+import { useRouter } from "vue-router"
+
+type ImageType = {
+  name: string;
+  description: string;
+  tags: string;
+  url: string;
+  id: number;
+  seen: boolean;
+  created_at: Date
+}
 
 const name = ref<string>("");
 const tags = ref<string>("");
 const description = ref<string>("");
 const file = ref<File | null>();
+const router = useRouter()
 
 const onFileChanged = ($event: Event) => {
   const target = $event.target as HTMLInputElement;
@@ -62,8 +76,23 @@ const onSubmit = async ($event: Event) => {
       formData.append("tags", tags.value);
       formData.append("description", description.value);
 
-      await client.post(`images`, formData);
+      const { data } = await client.post(`images`, formData) as { data: ImageType };
+      console.log(data)
+      if (data.id) {
+        console.log("Totot")
+        toast.success("Votre image a bien été enregistrée, Merci");
+
+        name.value = "";
+        tags.value = "";
+        description.value = "";
+        setTimeout(() => {
+          router.push(`/mon-partage/${data.id}`)
+        }, 1500)
+      } else {
+        toast.error("Une erreur est survenue, else")
+      }
     } else {
+      toast.error("Une erreur est survenue")
       throw new Error("Invalid File")
     }
 
@@ -71,7 +100,6 @@ const onSubmit = async ($event: Event) => {
     console.error("There was an error uploading the image", error);
   }
 }
-
 </script>
 <style lang="">
 
