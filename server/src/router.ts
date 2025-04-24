@@ -2,6 +2,7 @@ import express from "express";
 import { Response } from "express";
 
 import imagesControllers from "./images/images.controllers";
+import usersControllers from "./users/user.resolver";
 
 const router = express.Router();
 
@@ -12,5 +13,7 @@ router.get("/", (_, res: Response) => {
 });
 
 router.use("/images", imagesControllers);
+
+router.use("/users", usersControllers);
 
 export default router;

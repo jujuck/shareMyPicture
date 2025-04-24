@@ -5,7 +5,9 @@ import { dataSource } from "./client";
 import "reflect-metadata";
 import cors from "cors";
 import "dotenv/config";
+import { signup } from "./utils/users";
 const app = express();
+let initialization = true;
 
 app.use(
   cors({
@@ -13,6 +15,8 @@ app.use(
     credentials: true,
   })
 );
+
+app.use(express.json());
 
 app.use("/api", router);
 
@@ -22,6 +26,11 @@ app.use("/public", express.static(path.resolve(uploadDir)));
 const PORT = process.env.PORT || 3000;
 app.listen(PORT, async () => {
   await dataSource.initialize();
+
+  if (initialization) {
+    await signup();
+    initialization = false;
+  }
   console.log(`Serveur is listenning on http://localhost:${PORT}`);
 });
 
