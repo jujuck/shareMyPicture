@@ -68,9 +68,8 @@ const onSubmit = async ($event: Event) => {
       formData.append("description", description.value);
 
       const { data } = await client.post(`images`, formData) as { data: ImageType };
-      console.log(data)
+
       if (data.id) {
-        console.log("Totot")
         toast.success("Votre image a bien été enregistrée, Merci");
 
         name.value = "";
@@ -80,7 +79,7 @@ const onSubmit = async ($event: Event) => {
           router.push(`/mon-partage/${data.id}`)
         }, 1500)
       } else {
-        toast.error("Une erreur est survenue, else")
+        toast.error("Une erreur est survenue")
       }
     } else {
       toast.error("Une erreur est survenue")

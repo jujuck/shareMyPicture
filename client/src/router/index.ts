@@ -1,8 +1,22 @@
 import { createRouter, createWebHistory } from "vue-router";
+import { useUserStore } from "../stores/user";
 import HomeView from "../pages/HomeView.vue";
 import UploadView from "../pages/UploadView.vue";
 import LoginView from "../pages/LoginView.vue";
 import SharingView from "../pages/SharingView.vue";
+import GalleryView from "../pages/GalleryView.vue";
+
+import { RouteLocationNormalized, NavigationGuardNext } from "vue-router";
+
+const checkAuth = (
+  _: RouteLocationNormalized,
+  __: RouteLocationNormalized,
+  next: NavigationGuardNext
+): void => {
+  const { isAdmin } = useUserStore();
+  if (isAdmin) next();
+  else next("/");
+};
 
 const router = createRouter({
   history: createWebHistory(""),
@@ -26,6 +40,12 @@ const router = createRouter({
       path: "/mon-partage/:id",
       name: "sharing",
       component: SharingView,
+    },
+    {
+      path: "/gallery",
+      name: "gallery",
+      component: GalleryView,
+      beforeEnter: [checkAuth],
     },
   ],
 });
