@@ -1,13 +1,51 @@
-import express, { Response, Request } from "express";
+import express, { Response, Request, NextFunction } from "express";
 import upload from "../services/upload";
 import { Images } from "./images.entities";
 import resizeImage from "../services/sharp";
+import jwt from "jsonwebtoken";
 
 const imagesControllers = express.Router();
 
-imagesControllers.get("/", async (_: any, res: Response) => {
+const checkCookies = (req: Request, res: Response, next: NextFunction) => {
   try {
-    res.status(200).json("Hello");
+    const payload = jwt.verify(
+      req.cookies.wedding_pass,
+      process.env.SECRET_KEY as string
+    ) as { email: string; isConnected: boolean };
+    if (
+      payload.email === (process.env.USER_EMAIL as string) &&
+      payload.isConnected
+    ) {
+      next();
+    } else {
+      throw new Error();
+    }
+  } catch {
+    res.sendStatus(403);
+  }
+};
+
+imagesControllers.get("/", checkCookies, async (_: any, res: Response) => {
+  try {
+    let image = await Images.createQueryBuilder("image")
+      .where("image.seen = :seen", { seen: false })
+      .orderBy("RANDOM()") // Ou RAND() si MySQL
+      .getOne();
+
+    // Si aucune image (toute vue, alors une en aléatoire)
+    if (!image) {
+      image = await Images.createQueryBuilder("image")
+        .orderBy("RANDOM()") // Ou RAND() si MySQL
+        .getOne();
+    }
+
+    // Si image jamais vu, changé son statut
+    if (image && !image.seen) {
+      image.seen = true;
+      image.save();
+    }
+
+    res.status(200).json(image);
   } catch (error) {
     res.sendStatus(500);
   }

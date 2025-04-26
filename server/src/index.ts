@@ -6,6 +6,7 @@ import "reflect-metadata";
 import cors from "cors";
 import "dotenv/config";
 import { signup } from "./utils/users";
+import cookieParser from "cookie-parser";
 const app = express();
 let initialization = true;
 
@@ -17,7 +18,7 @@ app.use(
 );
 
 app.use(express.json());
-
+app.use(cookieParser());
 app.use("/api", router);
 
 const uploadDir = "./public";
