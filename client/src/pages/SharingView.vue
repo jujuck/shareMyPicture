@@ -1,5 +1,5 @@
 <template>
-  <div>
+  <main>
     <h1 class="mt-2 text-center">Merci pour ton partage</h1>
     <section class="preview">
       <img :src="url + '/public/images/' + image.url" alt="image.alt"
@@ -18,7 +18,7 @@
         Re Partager un instant avec vous
       </RouterLink>
     </section>
-  </div>
+  </main>
 </template>
 <script setup lang="ts">
 import { useRoute } from 'vue-router';
