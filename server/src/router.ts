@@ -2,7 +2,7 @@ import express from "express";
 import { Response } from "express";
 
 import imagesControllers from "./images/images.controllers";
-import usersControllers from "./users/user.resolver";
+import usersControllers from "./users/user.controllers";
 
 const router = express.Router();
 

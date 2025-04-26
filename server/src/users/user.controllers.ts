@@ -22,6 +22,7 @@ usersControllers.post("/signin", async (req: Request, res: Response) => {
         .cookie("wedding_pass", token, {
           httpOnly: true,
           secure: true,
+          sameSite: "none",
         })
         .json({ isAdmin: true });
     } else {
