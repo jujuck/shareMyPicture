@@ -8,7 +8,6 @@
       <label for="picture">
         Charge ta photo
       </label>
-      <input id="picture" class="desktop" type="file" required accept="image/*" @change="onFileChanged($event)" />
       <input type="file" class="mobile" required capture="environment" accept="image/*" @change="onFileChanged($event)">
       <label for="name">
         Ton nom et prénom
