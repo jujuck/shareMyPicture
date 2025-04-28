@@ -15,7 +15,7 @@ export default defineConfig({
       ],
       manifest: {
         name: "Helene et Julien",
-        short_name: "H&J",
+        short_name: "H&J for love",
         description: "Partage de photos de mariage",
         theme_color: "#ffffff",
         background_color: "#ffffff",
