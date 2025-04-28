@@ -29,12 +29,14 @@ const resizeImage = async (req: Request, res: Response, next: NextFunction) => {
     if (orientation === "portrait") {
       optimizedBuffer = await image
         .resize({ height: baseHeight })
-        .jpeg({ quality: 80 })
+        .toFormat("jpeg")
+        .jpeg({ quality: 100 })
         .toBuffer();
     } else {
       optimizedBuffer = await image
         .resize({ width: baseWidth })
-        .jpeg({ quality: 80 })
+        .toFormat("jpeg")
+        .jpeg({ quality: 100 })
         .toBuffer();
     }
 
