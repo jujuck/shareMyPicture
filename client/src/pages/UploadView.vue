@@ -40,6 +40,7 @@ import { toast } from 'vue3-toastify';
 import 'vue3-toastify/dist/index.css';
 import { useRouter } from "vue-router";
 import type { ImageType } from '../types/images.types';
+import imageCompression from 'browser-image-compression';
 
 const name = ref<string>("");
 const tags = ref<string>("");
@@ -50,7 +51,20 @@ const router = useRouter()
 const onFileChanged = ($event: Event) => {
   const target = $event.target as HTMLInputElement;
   if (target && target.files) {
-    file.value = target.files[0];
+    const options = {
+      maxSizeMB: 1,
+      maxWidthOrHeight: 1024,
+      useWebWorker: true,
+    };
+    imageCompression(target.files[0], options)
+      .then(compressedFile => {
+        file.value = compressedFile;
+        toast.success("Fichier pré chargé avec succès")
+      })
+      .catch(error => {
+        console.error('Erreur compression:', error);
+        toast.error("Erreur lors de la compression de l'image.");
+      });
   }
 }
 
@@ -82,11 +96,12 @@ const onSubmit = async ($event: Event) => {
         toast.error("Une erreur est survenue")
       }
     } else {
-      toast.error("Une erreur est survenue")
+      toast.error("Photo non conforme")
       throw new Error("Invalid File")
     }
 
   } catch (error) {
+    toast.error("Une erreur est survenue")
     console.error("There was an error uploading the image", error);
   }
 }
