@@ -3,6 +3,7 @@ import sharp from "sharp";
 import { Request, Response, NextFunction } from "express";
 import path from "path";
 import fs from "fs/promises";
+import "dotenv/config";
 
 const getOrientationFromBuffer = async (
   buffer: Buffer
@@ -17,6 +18,7 @@ const getOrientationFromBuffer = async (
   return "square"; // au cas où c’est un carré
 };
 
+const quality = process.env.QUALITY || 90;
 let index = 0;
 const resizeImage = async (req: Request, res: Response, next: NextFunction) => {
   const baseWidth = 2400;
@@ -30,13 +32,13 @@ const resizeImage = async (req: Request, res: Response, next: NextFunction) => {
       optimizedBuffer = await image
         .resize({ height: baseHeight })
         .toFormat("jpeg")
-        .jpeg({ quality: 100 })
+        .jpeg({ quality: +quality })
         .toBuffer();
     } else {
       optimizedBuffer = await image
         .resize({ width: baseWidth })
         .toFormat("jpeg")
-        .jpeg({ quality: 100 })
+        .jpeg({ quality: +quality })
         .toBuffer();
     }
 
