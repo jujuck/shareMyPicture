@@ -22,13 +22,9 @@ const upload = multer({
   storage,
   limits: { fileSize: 10 * 1024 * 1024 }, // 10MB max
   fileFilter: (_: Request, file, cb) => {
-    const ext = path.extname(file.originalname).toLowerCase();
-    if (
-      ext !== ".jpg" &&
-      ext !== ".jpeg" &&
-      ext !== ".png" &&
-      ext !== ".webp"
-    ) {
+    console.log(file);
+
+    if (!file.mimetype.includes("image")) {
       return cb(new Error("Seules les images sont autorisées"));
     }
     cb(null, true);
