@@ -28,7 +28,7 @@
           <li>Sélectionnez <strong>"Sur l’écran d’accueil"</strong>.</li>
         </ol>
 
-        <p class="text-muted small mt-3">Une fois installée, l’application s’ouvrira comme une vraie application mobile.
+        <p class="text-muted small mt-3">Une fois installée, ferme ton navigateur et ouvre directement ton app
         </p>
       </div>
     </div>
