@@ -16,10 +16,25 @@
     <h6>Cassiopée</h6>
     <h6>Soraya</h6>
   </section>
+  <ModalsContainer @click="() => open()" />
 </template>
-<script lang="ts">
-export default {
+<script lang="ts" setup>
+import { ref, onMounted } from 'vue';
+import { ModalsContainer, useModal } from 'vue-final-modal';
+import InstallationModal from '../components/InstallationModal.vue'
 
-}
+const isPwaInstalled = ref(false);
+
+const { open } = useModal({
+  component: InstallationModal,
+})
+onMounted(() => {
+  // Test si l'app est installé ou non
+  isPwaInstalled.value = window.matchMedia('(display-mode: standalone)').matches ||
+    ('standalone' in window.navigator && window.navigator.standalone === true)
+  open()
+
+});
+
 </script>
 <style scoped></style>
