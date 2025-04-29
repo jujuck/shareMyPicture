@@ -28,7 +28,8 @@
           <li>Sélectionnez <strong>"Sur l’écran d’accueil"</strong>.</li>
         </ol>
 
-        <p class="text-muted small mt-3">Une fois installée, ferme ton navigateur et ouvre directement ton app
+        <p class="text-muted small mt-3">Une fois installée, ferme ton navigateur et ouvre directement ton app en
+          cliquant sur l'icone
         </p>
       </div>
     </div>
