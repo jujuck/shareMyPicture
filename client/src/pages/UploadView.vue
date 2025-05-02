@@ -16,7 +16,7 @@
       <label for="tags">
         Tag des personnes (si tu le veux)
       </label>
-      <input id="tags" v-model="tags" type="text" />
+      <input id="tags" v-model="tags" type="text" required />
       <label for="description">
         Une petite description
       </label>
